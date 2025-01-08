@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "459349289712",
+    "project_id": "pam-firebase-ce87c",
+    "storage_bucket": "pam-firebase-ce87c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459349289712:android:9c803728042d4301a1b035",
+        "android_client_info": {
+          "package_name": "com.example.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAusfThGYH4tgdiBkfUdqRJ8FBn5c0qwPg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

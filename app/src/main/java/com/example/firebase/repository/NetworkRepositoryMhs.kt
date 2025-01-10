@@ -3,6 +3,7 @@ package com.example.firebase.repository
 import com.example.firebase.model.Mahasiswa
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -27,7 +28,8 @@ class NetworkRepositoryMhs(
                     val mhsList = value.documents.mapNotNull {
                         it.toObject(Mahasiswa::class.java)!!
                     }
-                    trySend(mhsList)
+                    trySend(mhsList) // try send memberi fungsi untuk memberikan fungsi untuk mengirim data ke flow
+
                 }
             }
         awaitClose{
@@ -35,8 +37,18 @@ class NetworkRepositoryMhs(
         }
     }
 
-    override fun getMhs(nim: String): Flow<Mahasiswa> {
-        TODO("Not yet implemented")
+    override fun getMhs(nim: String): Flow<Mahasiswa> = callbackFlow{
+        val mhsDocument = firestore.collection("Mahasiswa")
+            .document(nim)
+            .addSnapshotListener{ value, error ->
+                if (value != null){
+                    val mhs = value.toObject(Mahasiswa::class.java)!!
+                    trySend(mhs)
+                }
+            }
+        awaitClose {
+            mhsDocument.remove()
+        }
     }
 
     override suspend fun deleteMhs(mahasiswa: Mahasiswa) {

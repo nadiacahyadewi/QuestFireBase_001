@@ -2,6 +2,13 @@ package com.example.firebase.ui.home.viewmodel
 
 import com.example.firebase.model.Mahasiswa
 
+sealed class FormState{
+    object Idie : FormState()
+    object Loading : FormState()
+    data class Success(val message: String) : FormState()
+    data class Error(val message: String) : FormState()
+}
+
 data class InsertUiState (
     val insertUiEvent: MahasiswaEvent = MahasiswaEvent(),
     val isEntryValid: FormErrorState = FormErrorState(),

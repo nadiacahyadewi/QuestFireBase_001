@@ -79,8 +79,9 @@ fun HomeScreen(
         HomeStatus(
             homeUiState = viewModel.mhsUiState,
             retryAction = {viewModel.getMhs()}, modifier = Modifier.padding(innerPadding),
-            onDetailClick = onDetailClick, onDeleteClick = {
-                viewModel.getMhs()
+            onDetailClick = onDetailClick,
+            onDeleteClick = { mahasiswa ->
+                viewModel.deleteMhs(mahasiswa)
             }
         )
     }
@@ -104,8 +105,8 @@ fun HomeStatus(
                 mahasiswa = homeUiState.data, modifier = modifier.fillMaxWidth(), onDetailClick = {
                     onDetailClick(it)
                 },
-                onDeleteClick = {
-                    onDeleteClick(it)
+                onDeleteClick = { mahasiswa -> deleteConfirmationRequired = mahasiswa
+
                 }
             )
             deleteConfirmationRequired?.let { data ->
@@ -189,7 +190,7 @@ fun MhsCard(
     mahasiswa: Mahasiswa,
     modifier: Modifier = Modifier,
     onDeleteClick: (Mahasiswa) -> Unit = {}
-){
+) {
     Card (
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
@@ -208,7 +209,7 @@ fun MhsCard(
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(Modifier.weight(1f))
-                IconButton(onClick = {onDeleteClick(mahasiswa)}) {
+                IconButton(onClick = { onDeleteClick(mahasiswa) }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
                         contentDescription = null

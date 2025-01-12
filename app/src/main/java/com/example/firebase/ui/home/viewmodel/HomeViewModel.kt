@@ -1,6 +1,5 @@
 package com.example.firebase.ui.home.viewmodel
 
-import android.net.http.HttpException
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -11,7 +10,6 @@ import com.example.firebase.repository.RepositoryMhs
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 class HomeViewModel (
     private val repositoryMhs: RepositoryMhs
@@ -50,8 +48,6 @@ class HomeViewModel (
             }
         }
     }
-
-
 }
 
 sealed class HomeUiState{

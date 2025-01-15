@@ -97,7 +97,7 @@ fun InsertMhsView(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(padding)
-                .padding(16.dp)
+                .padding(6.dp)
         ){
             InsertBodyMhs(
                 uiState = uiEvent,
@@ -200,7 +200,7 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         Text(text = "Jenis Kelamin")
         Row (
             modifier = Modifier.fillMaxWidth()
@@ -242,7 +242,7 @@ fun FormMahasiswa(
             color = Color.Red
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(5.dp))
         Text(text = "kelas")
         Row (
             modifier = Modifier.fillMaxWidth()
